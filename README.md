@@ -82,5 +82,4 @@ Abre tu navegador y entra en:
 *   Desarrollador Fullstack Java/React.
 *   [GitHub](https://github.com/RafaelHidalgoTorresDev)
 
----
-*Este proyecto fue generado y refinado utilizando asistencia de IA avanzada para la optimización de código y diseño.*
+
