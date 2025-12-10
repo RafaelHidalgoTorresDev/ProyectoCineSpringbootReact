@@ -1,0 +1,4 @@
+titulo;duracion;fecha_estreno;sinopsis;ficha_id;valoracion;director_id
+Interstellar;169;2014-11-07;Exploradores espaciales viajan más allá del sistema solar.;NULL;0;1
+The Dark Knight;152;2008-07-18;Batman se enfrenta al Joker en Gotham City.;NULL;0;1
+Soul;100;2020-12-25;Un músico descubre el verdadero significado de la vida.;NULL;0;2

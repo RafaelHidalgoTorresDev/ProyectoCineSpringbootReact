@@ -1,0 +1,475 @@
+/* ========================================= */
+/*  PROJECT AURORA - CORE SYSTEM             */
+/* ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  --aurora-bg: #050505;
+  --aurora-primary: #E50914;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --neon-blue: #00f2ff;
+  --neon-purple: #bd00ff;
+  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+  margin: 0;
+  background-color: var(--aurora-bg);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ========================================= */
+/*  AURORA BACKGROUND ANIMATION              */
+/* ========================================= */
+.aurora-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+.aurora-blob {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.6;
+  border-radius: 50%;
+  animation: float 20s infinite ease-in-out;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, #2a0038, transparent);
+  animation-duration: 25s;
+}
+
+.blob-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, #001338, transparent);
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+
+.blob-3 {
+  top: 40%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, #1a0000, transparent);
+  opacity: 0.4;
+}
+
+.aurora-overlay {
+  position: absolute;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.aurora-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* ========================================= */
+/*  PROFILE GATE STYLES                      */
+/* ========================================= */
+.profile-gate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: fadeIn 1s ease-out;
+}
+
+.gate-title {
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -1px;
+}
+
+.gate-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gate-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gate-card {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-back);
+  border: 3px solid transparent;
+}
+
+.gate-card:hover {
+  transform: scale(1.1);
+  border-color: white;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.gate-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gate-name {
+  color: #808080;
+  font-size: 1.3rem;
+  /* Slightly larger */
+  margin-top: 15px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  /* Same as title */
+  font-weight: 400;
+  /* Same as title */
+  transition: color 0.3s;
+}
+
+.gate-card-wrapper:hover .gate-name {
+  color: white;
+  font-weight: 600;
+}
+
+/* ADD PROFILE BUTTON */
+.add-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 2px solid #333;
+  /* Sin imagen, solo borde */
+}
+
+.add-profile:hover {
+  background: white;
+  border-color: white;
+}
+
+.add-icon-circle {
+  color: #808080;
+  transition: 0.3s;
+}
+
+.add-profile:hover .add-icon-circle {
+  color: black;
+}
+
+/* EDIT MODE OVERLAY */
+.gate-overlay-edit {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.delete-icon-bg {
+  background: var(--aurora-primary);
+  border-radius: 50%;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+.gate-edit-btn {
+  margin-top: 4rem;
+  background: transparent;
+  border: 1px solid #808080;
+  color: #808080;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 2px;
+}
+
+.gate-edit-btn:hover {
+  color: white;
+  border-color: white;
+}
+
+/* MODAL PREMIUM AURORA */
+.gate-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  /* Darker overlay */
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.gate-modal {
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+  padding: 3rem;
+  border-radius: 20px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glow at top of modal */
+.gate-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--aurora-primary), transparent);
+}
+
+.gate-modal h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-family: var(--font-display);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* AVATAR SELECTOR */
+.avatars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-items: center;
+}
+
+.avatar-option-modal {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 3px solid transparent;
+  opacity: 0.7;
+}
+
+/* DISABLED AVATAR */
+.avatar-option-modal.disabled {
+  filter: grayscale(1);
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.avatar-wrapper-modal {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-taken-overlay {
+  position: absolute;
+  color: #ff3333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  pointer-events: none;
+  text-shadow: 0 0 5px black;
+}
+
+.avatar-option-modal.selected {
+  opacity: 1;
+  transform: scale(1.2);
+  border-color: white;
+  box-shadow: 0 0 20px var(--aurora-primary);
+}
+
+.gate-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.gate-input:focus {
+  outline: none;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.gate-modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.gate-modal-actions button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #aaa;
+  border: 1px solid #444 !important;
+}
+
+.btn-cancel:hover {
+  border-color: white !important;
+  color: white;
+}
+
+.btn-confirm {
+  transform: translateY(-2px);
+}
+
+/* KIDS MODE TOGGLE CARD */
+.kids-mode-card {
+  width: 100%;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 1.5rem;
+  /* Better spacing from input */
+}
+
+.kids-mode-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.kids-mode-card.active {
+  background: linear-gradient(90deg, rgba(0, 242, 255, 0.1) 0%, rgba(0, 242, 255, 0.05) 100%);
+  /* Softer gradient */
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.15);
+  /* Softer glow */
+}
+
+.kids-toggle-label {
+  font-weight: 500;
+  color: #aaa;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: 0.3s;
+}
+
+.kids-mode-card.active .kids-toggle-label {
+  color: white;
+  text-shadow: 0 0 12px var(--neon-blue);
+  font-weight: 700;
+}
+
+.toggle-switch {
+  width: 52px;
+  height: 30px;
+  background: #222;
+  border-radius: 50px;
+  position: relative;
+  transition: 0.3s;
+  border: 1px solid #444;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-knob {
+  width: 24px;
+  height: 24px;
+  background: #888;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.kids-mode-card.active .toggle-switch {
+  background: rgba(0, 242, 255, 0.2);
+  border-color: var(--neon-blue);
+}
+
+.kids-mode-card.active .toggle-knob {
+  transform: translateX(22px);
+  background: white;
+  box-shadow: 0 0 10px var(--neon-blue);
+}
