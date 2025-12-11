@@ -79,9 +79,14 @@ export const AuthProvider = ({ children }) => {
             if (res.ok) {
                 setProfiles(prev => prev.filter(p => p.id !== id));
                 if (user && user.id === id) logout();
+                return true;
+            } else {
+                console.error("Failed to delete profile. Status:", res.status);
+                return false;
             }
         } catch (err) {
             console.error("Error deleting profile:", err);
+            return false;
         }
     };
 

@@ -179,8 +179,12 @@ const ProfileGate = () => {
                                     className="btn-delete"
                                     onClick={async () => {
                                         if (confirm("¿Seguro que quieres borrar este perfil?")) {
-                                            await deleteProfile(editingId);
-                                            setShowModal(false);
+                                            const success = await deleteProfile(editingId);
+                                            if (success) {
+                                                setShowModal(false);
+                                            } else {
+                                                alert("No se pudo borrar el perfil. Puede que tenga datos asociados.");
+                                            }
                                         }
                                     }}
                                     style={{ backgroundColor: '#333', color: '#ff4444' }}

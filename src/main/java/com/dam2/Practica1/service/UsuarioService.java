@@ -66,8 +66,16 @@ public class UsuarioService {
     }
 
     public boolean borrar(Long id) {
-        if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
+        Optional<Usuario> opcional = usuarioRepository.findById(id);
+        if (opcional.isPresent()) {
+            Usuario usuario = opcional.get();
+
+            // Limpiar relaciones para evitar errores de integridad referencial
+            usuario.getVistas().clear();
+            usuario.getCriticas().clear(); // Aunque orphanRemoval=true debería encargarse, esto fuerza la actualización
+
+            usuarioRepository.save(usuario); // Guardamos para actualizar la tabla de unión y borrar criticas
+            usuarioRepository.delete(usuario); // Borramos el usuario
             return true;
         }
         return false;

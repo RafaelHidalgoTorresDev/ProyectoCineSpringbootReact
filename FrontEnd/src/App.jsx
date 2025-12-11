@@ -123,7 +123,7 @@ const AuthenticatedApp = () => {
     }, [user, allMovies]);
 
     const handleMovieClick = (movie) => setSelectedMovie(movie);
-    const handlePlay = () => alert(`🍿 Reproduciendo: ${heroMovie?.titulo || "Pelicula"}\n\nDisfruta de tu sesión, ${user.username}.`);
+    const handlePlay = () => alert(`💎 Contenido Exclusivo\n\nEste título requiere una suscripción activa a Rafa's Cinema GOLD.\n\nActualiza tu plan hoy mismo y accede al catálogo completo sin anuncios.`);
 
     const HomeView = () => (
         <>
@@ -196,7 +196,7 @@ const AuthenticatedApp = () => {
                                 <div className="modal-gradient"></div>
                                 <div className="modal-hero-content">
                                     <h1>{selectedMovie.titulo}</h1>
-                                    <button className="btn btn-white" onClick={() => alert("Reproduciendo...")}><Play fill="black" size={20} /> Reproducir</button>
+                                    <button className="btn btn-white" onClick={() => alert(`🔒 Acceso Restringido\n\nPara reproducir "${selectedMovie.titulo}" necesitas el plan Rafa's Cinema GOLD.\n\n¡Suscríbete y desbloquea la magia del cine! ✨`)}><Play fill="black" size={20} /> Reproducir</button>
                                 </div>
                             </div>
                             <div className="modal-body">
